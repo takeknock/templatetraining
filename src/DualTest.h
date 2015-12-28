@@ -9,11 +9,13 @@ namespace dual {
     public:
         CPPUNIT_TEST_SUITE(DualTest);
         CPPUNIT_TEST(testConstructor);
+        CPPUNIT_TEST(testOperatorPlus);
         CPPUNIT_TEST_SUITE_END();
         
     public:
         void setUp();
         void testConstructor();
+        void testOperatorPlus();
         void tearDown();
     };
 

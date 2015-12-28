@@ -6,25 +6,30 @@ namespace dual {
     class Dual {
     public:
         friend class DualTest;
-        Dual(T a, T b);
-        ~Dual();
+        Dual()
+        :_a(0.0), _b(0.0)
+        {
+        }
+
+        Dual(T a, T b)
+        :_a(a), _b(b)
+        {
+            
+        }
+        ~Dual()
+        {
+        }
     
     private:
         T _a;
         T _b;
     };
     
-    template <class T>   
-    Dual::Dual(T a, T b)
-    :_a(a), _b(b)
-    {
-    
-    }
-    
-    Dual::~Dual()
-    {
-    
-    }
+//    template <typename L, typename R>
+//    promote_traits<L, R> Dual::operator +(const L& x, const R& y)
+//    {
+//        return promote_traits<L, R>(x._a + y._a, x._b + y.b);
+//    }
     
 }// namespace dual {
 
