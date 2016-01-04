@@ -16,20 +16,42 @@ namespace dual {
         {
             
         }
+
         ~Dual()
         {
         }
+
+        Dual<T> operator +(const Dual<T>& r);
     
     private:
         T _a;
         T _b;
     };
     
-//    template <typename L, typename R>
-//    promote_traits<L, R> Dual::operator +(const L& x, const R& y)
+
+//    template <typename R>
+//    struct promote_traits {
+//        typedef R type;
+//    };
+
+//    template <>
+//    struct promote_traits<Dual> {
+//        typedef Dual type;
+//    };
+
+//    template <>
+//    const promote_traits<Dual<double> > Dual<double>::operatorPlus(const Dual<double>& y)
 //    {
-//        return promote_traits<L, R>(x._a + y._a, x._b + y.b);
+//        promote_traits<Dual<double> >::type result(this->a + y._a, this->b + y._b);
+//        return result;
 //    }
+
+    template <>
+    Dual<double> Dual<double>::operator+(const Dual<double>& y)
+    {
+        Dual<double> result(this->_a + y._a, this->_b + y._b);
+        return result;
+    }
     
 }// namespace dual {
 
