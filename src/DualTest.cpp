@@ -27,14 +27,22 @@ namespace dual {
 
     void DualTest::testOperatorPlus()
     {
-        //boost::shared_ptr<Dual<double> > d1(new Dual<double>(1.0, 2.0));
-        //boost::shared_ptr<Dual<double> > d2(new Dual<double>(3.0, 4.0));
+        //for double
         Dual<double> d1(1.0, 2.0);
         Dual<double> d2(3.0, 4.0);
 
-        Dual<double> d3 = d1 + d2;
+        const Dual<double> d3 = d1 + d2;
         CPPUNIT_ASSERT(d3._a == 4.0);
         CPPUNIT_ASSERT(d3._b == 6.0);
+
+        //for integer
+    //    Dual<double> d4(1, 2);
+    //    Dual<double> d5(3, 4);
+
+    //    const Dual<double> d6 = d4 + d5;
+    //    CPPUNIT_ASSERT(d6._a == 4);
+    //    CPPUNIT_ASSERT(d6._b == 6);
+
         return;
     }
 

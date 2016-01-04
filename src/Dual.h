@@ -21,7 +21,7 @@ namespace dual {
         {
         }
 
-        Dual<T> operator +(const Dual<T>& r);
+        const Dual<T> operator +(const Dual<T>& r) const;
     
     private:
         T _a;
@@ -31,28 +31,40 @@ namespace dual {
 
 //    template <typename R>
 //    struct promote_traits {
-//        typedef R type;
+//        typedef Dual<R> type;
 //    };
-
+//
 //    template <>
-//    struct promote_traits<Dual> {
-//        typedef Dual type;
+//    struct promote_traits<Dual<double> > {
+//        typedef Dual<double> type;
 //    };
-
+//
 //    template <>
-//    const promote_traits<Dual<double> > Dual<double>::operatorPlus(const Dual<double>& y)
-//    {
-//        promote_traits<Dual<double> >::type result(this->a + y._a, this->b + y._b);
-//        return result;
-//    }
+//    struct promote_traits<Dual<int> > {
+//        typedef Dual<double> type;
+//    };
 
     template <>
-    Dual<double> Dual<double>::operator+(const Dual<double>& y)
+    const Dual<double> Dual<double>::operator+(const Dual<double>& y) const
     {
         Dual<double> result(this->_a + y._a, this->_b + y._b);
         return result;
     }
-    
+
+//    template <>
+//    const promote_traits<Dual<double> >::type Dual<double>::operator+(const Dual<double>& y) const
+//    {
+//        promote_traits<Dual<double> >::type result(this->_a + y._a, this->_b + y._b);
+//        return result;
+//    }
+//
+//    template <>
+//    const promote_traits<Dual<int> >::type Dual<double>::operator+(const Dual<int>& y) const
+//    {
+//        promote_traits<Dual<int> > result(this->_a + y._a, this->_b + y._b);
+//        return result;
+//    }
+
 }// namespace dual {
 
 #endif
