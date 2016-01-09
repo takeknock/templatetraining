@@ -24,7 +24,7 @@ do
  dirname=`dirname $filename`
  basename=`basename $filename .h`
  echo "$filename --> $dirname/$basename.ps"
- enscript --highlight=cpp --color --fancy-header --landscape --columns=2 -o $dirname/${basename}_h.ps $filename
+ enscript --highlight=cpp --color --fancy-header --line-numbers --landscape --columns=2 -o $dirname/${basename}_h.ps $filename
  echo "ps2pdf $dirname/${basename}_h.ps"
  ps2pdf $dirname/${basename}_h.ps
  rm $dirname/${basename}_h.ps
