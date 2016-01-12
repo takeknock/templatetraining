@@ -25,6 +25,17 @@ void AnalyticBlackTest::testConstructor()
 
 void AnalyticBlackTest::testCalculatePrice()
 {
+    const double forwardRate = 0.07;
+    const double notional = 10000;
+    const double strike = 0.08;
+    const double dt = 0.25;
+    const double yield = 0.065;
+    const double expiry = 1.25;
+    const double volatility = 0.2;
+    const double fixingTime = 1.0;
+    strcp::AnalyticBlack a(forwardRate);
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(5.1900459174405, a.calculatePrice(notional, strike,
+        dt, yield, expiry, volatility, fixingTime), 1e-08);
 
 }
 
