@@ -1,13 +1,12 @@
-#ifndef DUAL_DUAL_INCLUDED
-#define DUAL_DUAL_INCLUDED
+#ifndef DUAL_INCLUDED
+#define DUAL_INCLUDED
 
 namespace dual {
-    template <class T>
+    template <typename T>
     class Dual {
     public:
-        friend class DualTest;
         Dual()
-        :_a(0.0), _b(0.0)
+        :_a(0), _b(0)
         {
         }
 
@@ -21,12 +20,12 @@ namespace dual {
         {
         }
 
-        const Dual<T> operator +(const Dual<T>& r) const;
     
     private:
         T _a;
         T _b;
     };
+    //const Dual<T> operator +(const Dual<T>& r) const;
     
 
 //    template <typename R>
@@ -44,12 +43,12 @@ namespace dual {
 //        typedef Dual<double> type;
 //    };
 
-    template <>
-    const Dual<double> Dual<double>::operator+(const Dual<double>& y) const
-    {
-        Dual<double> result(this->_a + y._a, this->_b + y._b);
-        return result;
-    }
+//    template <>
+//    const Dual<double> Dual<double>::operator+(const Dual<double>& y) const
+//    {
+//        Dual<double> result(this->_a + y._a, this->_b + y._b);
+//        return result;
+//    }
 
 //    template <>
 //    const promote_traits<Dual<double> >::type Dual<double>::operator+(const Dual<double>& y) const

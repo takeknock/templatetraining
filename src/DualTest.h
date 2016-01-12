@@ -1,8 +1,8 @@
 #include <cppunit/extensions/HelperMacros.h>
 #include "Dual.h"
 
-#ifndef DUAL_DUAL_TEST_INCLUDED
-#define DUAL_DUAL_TEST_INCLUDED
+#ifndef DUAL_TEST_INCLUDED
+#define DUAL_TEST_INCLUDED
 
 namespace dual {
     class DualTest : public CPPUNIT_NS::TestFixture {

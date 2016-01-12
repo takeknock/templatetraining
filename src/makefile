@@ -1,16 +1,26 @@
+#CC = g++
+#OBJ = $(wildcard *.o) 
+#LNK = -lcppunit
+#OUTFILENAME = a.out
+#
+#all:main $(OUTFILENAME) 
+#
+#main: $(OBJ)
+#	$(CC) -o $(OBJ) -lcppunit 
+#
+#$(OUTFILENAME): *.cpp
+#	$(CC) -o $@ $^ -lcppunit
+#
+#
+#clean:
+#	-rm $(OBJ) $(OUTFILENAME)
 CC = g++
-OBJ = DualTest.o main.o
+impl = $(wildcard *.cpp)
 LNK = -lcppunit
 OUTFILENAME = a.out
 
-all:main $(OUTFILENAME) 
-
-main: $(OBJ)
-	$(CC) -o $(OBJ) -lcppunit 
-
-$(OUTFILENAME): *.cpp
-	$(CC) -o $@ $^ -lcppunit
-
+$(OUTFILENAME): $(impl)
+	$(CC) $^ $(LNK)	
 
 clean:
-	-rm $(OBJ) $(OUTFILENAME)
+	-rm $(OUTFILENAME)
