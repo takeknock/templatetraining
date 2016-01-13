@@ -3,6 +3,7 @@
 namespace strcp {
     NewtonMethod::NewtonMethod()
     {
+        
     }
 
     NewtonMethod::~NewtonMethod()

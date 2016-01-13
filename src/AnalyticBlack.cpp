@@ -1,5 +1,6 @@
 #include <boost/math/distributions/normal.hpp>
 #include "AnalyticBlack.h"
+#include "NewtonMethod.h"
 
 namespace strcp {
 
@@ -38,6 +39,14 @@ namespace strcp {
         const double volatility, const double fixingTime)
     {
         return d1 - volatility * std::sqrt(fixingTime);
+    }
+
+    const double calculateVolatility(const double notional, const double strike,
+        const double dt, const double yield, const double expiry,
+        const double fixintTime, const double price)
+    {
+        //use Newton Method.
+        return 0.0;
     }
 
 } // namespace strcp

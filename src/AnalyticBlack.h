@@ -7,9 +7,12 @@ namespace strcp {
         AnalyticBlack(const double forwardRate); 
         ~AnalyticBlack();
         const double calculatePrice(const double notional, const double strike,
-             const double dt, const double yield,
-             const double expiry, const double volatility, 
-             const double fixingTime);
+            const double dt, const double yield,
+            const double expiry, const double volatility, 
+            const double fixingTime);
+        const double calculateVolatility(const double notional, const double strike,
+            const double dt, const double yield, const double expiry,
+            const double fixintTime, const double price);
 
     private:
         const double _forwardRate;

@@ -10,5 +10,11 @@ namespace strcp {
     };
 
 } // namespace strcp {
+/*
+ *add AnalyticBlack model.
+ *want to test private member function.
+ *want to be able to recieve vector for Dual in order to evaluate once.
+ *
+ */
 
 #endif // NEWTONMETHOD_H_INCLUDED
