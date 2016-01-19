@@ -1,0 +1,13 @@
+language: cpp
+compiler:
+- g++
+
+script:
+    - src/make && src/make test
+
+notifications:
+    email:
+        recipients: takeknock@gmail.com
+        on_success: change
+        on_failure: always
+
