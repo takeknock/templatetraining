@@ -24,3 +24,6 @@ $(OUTFILENAME): $(impl)
 
 clean:
 	-rm $(OUTFILENAME)
+
+test:
+	./a.out

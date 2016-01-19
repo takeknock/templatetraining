@@ -1,6 +1,7 @@
 #ifndef DUAL_INCLUDED
 #define DUAL_INCLUDED
 #include <boost/numeric/ublas/vector.hpp>
+//#include <boost/type_traits/promote_traits.hpp>
 
 //#include "type_traits.h"
 namespace dual {
