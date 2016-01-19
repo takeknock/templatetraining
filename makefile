@@ -16,9 +16,11 @@ TESTOBJ = $(wildcard $(SRC)/*.o)
 #
 #clean:
 #	-rm $(OBJ) $(OUTFILENAME)
+TESTDIR = src/TemplateTrainingTest
+SRCDIR = src
 CC = g++
-impl = $(wildcard *.cpp)
-testimpl = $(wildcard TemplateTrainingTest/*.cpp)
+impl = $(wildcard $(SRCDIR)/*.cpp)
+testimpl = $(wildcard $(TESTDIR)/*.cpp)
 LNK = -lcppunit
 OUTFILENAME = a.out
 
@@ -29,7 +31,5 @@ clean:
 	-rm $(OUTFILENAME)
 
 test:
-	./a.out
+	./$(OUTFILENAME)
 
-subsystem:
-	$(MAKE) -C TemplateTrainingTest

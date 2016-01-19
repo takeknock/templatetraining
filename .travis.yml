@@ -3,7 +3,7 @@ compiler:
 - g++
 
 script:
-    - src/make && src/make test
+    - make && make test
 
 notifications:
     email:
