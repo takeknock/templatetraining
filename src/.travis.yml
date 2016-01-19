@@ -2,3 +2,12 @@ language: cpp
 compiler:
 - g++
 
+script:
+    - make && make test
+
+notifications:
+    email:
+        recipients: takeknock@gmail.com
+        on_success: change
+        on_failure: always
+
