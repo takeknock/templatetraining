@@ -1,5 +1,7 @@
 #CC = g++
-#OBJ = $(wildcard *.o) 
+OBJ = $(wildcard *.o) 
+TESTOBJ = $(wildcard $(SRC)/*.o) 
+
 #LNK = -lcppunit
 #OUTFILENAME = a.out
 #
@@ -16,10 +18,11 @@
 #	-rm $(OBJ) $(OUTFILENAME)
 CC = g++
 impl = $(wildcard *.cpp)
+testimpl = $(wildcard TemplateTrainingTest/*.cpp)
 LNK = -lcppunit
 OUTFILENAME = a.out
 
-$(OUTFILENAME): $(impl)
+$(OUTFILENAME): $(impl) $(testimpl)
 	$(CC) $^ $(LNK)	
 
 clean:
@@ -27,3 +30,6 @@ clean:
 
 test:
 	./a.out
+
+subsystem:
+	$(MAKE) -C TemplateTrainingTest
