@@ -6,7 +6,8 @@
 #include <cppunit/TestRunner.h>
 
 #include <iostream>
-#include "AnalyticBlack.h"
+#include "calculatePriceWithBlack.h"
+//#include "AnalyticBlack.h"
 
 
 int main() 
@@ -32,14 +33,20 @@ int main()
     const double forwardRate1Yto15m = 0.07;
     const double dt = 0.25;
     const double yield = 0.065;
-    const double expiry = 1.25;
+    const double maturity = 1.25;
     const double volatility = 0.2;
     const double fixingTime = 1.0;
 
-    strcp::AnalyticBlack black(forwardRate1Yto15m);
-    const double price2 = black.calculatePrice(notional, strike, dt, yield,
-        expiry, volatility, fixingTime);
-    std::cout << price2 << std::endl;
+    // compile time
+    const double price = strcp::calculatePriceWithBlack(
+        forwardRate1Yto15m, strike, volatility, maturity, discountFactor);
+    std::cout << price << std::endl;
+
+    // execution time
+    //strcp::AnalyticBlack black(forwardRate1Yto15m);
+    //const double price2 = black.calculatePrice(notional, strike, dt, yield,
+    //    expiry, volatility, fixingTime);
+    //std::cout << price2 << std::endl;
 
     return 0;
 }

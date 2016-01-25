@@ -2,6 +2,7 @@
 #define DUAL_INCLUDED
 #include <boost/numeric/ublas/vector.hpp>
 #include "BinaryTraits.h"
+#include "Functor.h"
 
 namespace dual {
     template <typename T>
@@ -16,46 +17,43 @@ namespace dual {
         ~Dual()
         {
         }
-
     
     private:
         T _value;
-        ublas::vector<T> _derivative;
+        T _derivative;
     };
 
     template<typename L, typename R, typename O>
     struct BinaryTraits {
-        
+        typedef BinaryTraits<L, R, O> type;
+        typedef O<L, R>::result_type result_type;
+
+        static result_type apply(const L& l, const R& r, const O& o)
+        {
+            return o::apply(l, r);
+        }
     };
-    
 
     template <typename L, typename R>
-    Dual<typename promote_traits<L, R>::type>
+    typename BinaryTraits<L, R, DualPlus>::type
         operator +(const Dual<L>& x, const Dual<R>& y)
     {
-        typedef typename promote_traits<L, R>::type result_type;
-        return Dual<result_type>(x._value + y._value,
-            x._derivative + y._derivative);
-    }
 
+    }
 
     template <typename L, typename R>
     Dual<typename promote_traits<L, R>::type>
         operator -(const Dual<L>& x, const Dual<R>& y)
     {
-        typedef typename promote_traits<L, R>::type result_type;
         return Dual<result_type>(x._value - y._value,
             x._derivative - y._derivative);
     }
-
 
     template <typename L, typename R>
     Dual<typename promote_traits<L, R>::type>
         operator *(const Dual<L>& x, const Dual<R>& y)
     {
-        typedef typename promote_traits<L, R>::type result_type;
-        return Dual<result_type>(x._value * y._value,
-            x._value * y._derivative + x._derivative * y._value);
+        return 
     }
 
 
