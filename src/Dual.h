@@ -1,10 +1,10 @@
-#ifndef DUAL_INCLUDED
-#define DUAL_INCLUDED
+#ifndef DUAL_H_INCLUDED
+#define DUAL_H_INCLUDED
 #include <boost/numeric/ublas/vector.hpp>
 #include "BinaryTraits.h"
 #include "Functor.h"
 
-namespace dual {
+namespace strcp {
     template <typename T>
     class Dual {
     namespace ublas = boost::numeric::ublas;
@@ -38,33 +38,34 @@ namespace dual {
     typename BinaryTraits<L, R, DualPlus>::type
         operator +(const Dual<L>& x, const Dual<R>& y)
     {
-
+        return typename BinaryTraits<L, R, DualPlus>::type
+            Dual(x._value + y._value, x._derivative + y._derivative);
     }
 
     template <typename L, typename R>
-    Dual<typename promote_traits<L, R>::type>
+    typename BinaryTraits<L, R, DualMinus>::type
         operator -(const Dual<L>& x, const Dual<R>& y)
     {
-        return Dual<result_type>(x._value - y._value,
-            x._derivative - y._derivative);
+        return typename BinaryTraits<L, R, DualMinus>::type
+            Dual(x._value - y._value, x._derivative - y._derivative);
     }
 
     template <typename L, typename R>
-    Dual<typename promote_traits<L, R>::type>
+    typename BinaryTraits<L, R, DualMult>::type
         operator *(const Dual<L>& x, const Dual<R>& y)
     {
-        return 
+        return typename BinaryTraits<L, R, DualMult>::type
+            Dual(x._value * y._value, 
+                x._value * y._derivative + x._derivative * y._value);
     }
 
-
     template <typename L, typename R>
-    Dual<typename promote_traits<L, R>::type>
+    typename BinaryTraits<L, R, DualDiv>::type
         operator /(const Dual<L>& x, const Dual<R>& y)
     {
-        typedef typename promote_traits<L, R>::type result_type;
-        return Dual<result_type>(x._value / y._value,
+        return typename BinaryTraits<L, R, DualDiv> Dual<result_type>(x._value / y._value,
             (y._value * x._derivative - x._value * y._derivative)
             /(y._value * y._value));
     }
-} // namespace dual
-#endif //  DUAL_INCLUDED
+} // namespace strcp 
+#endif //  DUAL_H_INCLUDED
