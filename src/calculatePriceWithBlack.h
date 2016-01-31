@@ -8,7 +8,8 @@ namespace strcp {
     typename BlackTraits<F, K, V, T, D>::type calculatePriceWithBlack(const F& f,
         const K& k, const V& v, const T& t, const D& d)
     {
-        return BlackTraits<F, K, V, T, D>::apply(f(), k(), v(), t(), d());
+        // thought to input double, Dual and so on.
+        return BlackTraits<F, K, V, T, D>::apply(f(), k(), v(), t(), d()); 
     }
 } // namespace strcp {
 #endif // CALCULATE_PRICE_WITH_BLACK_H_INCLUDED
