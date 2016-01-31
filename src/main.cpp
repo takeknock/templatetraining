@@ -6,7 +6,7 @@
 #include <cppunit/TestRunner.h>
 
 #include <iostream>
-//#include "calculatePriceWithBlack.h"
+#include "calculatePriceWithBlack.h"
 //#include "AnalyticBlack.h"
 //
 
