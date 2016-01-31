@@ -23,49 +23,33 @@ namespace strcp {
         T _derivative;
     };
 
-    template<typename L, typename R, typename O>
-    struct BinaryTraits {
-        typedef BinaryTraits<L, R, O> type;
-        typedef O<L, R>::result_type result_type;
-
-        static result_type apply(const L& l, const R& r, const O& o)
-        {
-            return o::apply(l, r);
-        }
-    };
 
     template <typename L, typename R>
-    typename BinaryTraits<L, R, DualPlus>::type
+    typename DualBinaryTraits<L, R, DualPlus>::type
         operator +(const Dual<L>& x, const Dual<R>& y)
     {
-        return typename BinaryTraits<L, R, DualPlus>::type
-            Dual(x._value + y._value, x._derivative + y._derivative);
+        return typename DualBinaryTraits<L, R, DualPlus>::apply(x, y);
     }
 
     template <typename L, typename R>
-    typename BinaryTraits<L, R, DualMinus>::type
+    typename DualBinaryTraits<L, R, DualMinus>::type
         operator -(const Dual<L>& x, const Dual<R>& y)
     {
-        return typename BinaryTraits<L, R, DualMinus>::type
-            Dual(x._value - y._value, x._derivative - y._derivative);
+        return typename DualBinaryTraits<L, R, DualMinus>::apply(x, y);
     }
 
     template <typename L, typename R>
-    typename BinaryTraits<L, R, DualMult>::type
+    typename DualBinaryTraits<L, R, DualMult>::type
         operator *(const Dual<L>& x, const Dual<R>& y)
     {
-        return typename BinaryTraits<L, R, DualMult>::type
-            Dual(x._value * y._value, 
-                x._value * y._derivative + x._derivative * y._value);
+        return typename DualBinaryTraits<L, R, DualMult>::apply(x, y);
     }
 
     template <typename L, typename R>
-    typename BinaryTraits<L, R, DualDiv>::type
+    typename DualBinaryTraits<L, R, DualDiv>::type
         operator /(const Dual<L>& x, const Dual<R>& y)
     {
-        return typename BinaryTraits<L, R, DualDiv> Dual<result_type>(x._value / y._value,
-            (y._value * x._derivative - x._value * y._derivative)
-            /(y._value * y._value));
+        return typename DualBinaryTraits<L, R, DualDiv>::apply(x, y); 
     }
 } // namespace strcp 
 #endif //  DUAL_H_INCLUDED
