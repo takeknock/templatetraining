@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.5-130605-2.6 (utf8.euc) (TeX Live 2014) (preloaded format=platex 2015.3.17)  9 FEB 2016 05:40
+This is e-pTeX, Version 3.14159265-p3.5-130605-2.6 (utf8.euc) (TeX Live 2014) (preloaded format=platex 2015.3.17)  9 FEB 2016 08:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -219,24 +219,37 @@ LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 41.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 68.
+(Font)              scaled to size 6.72699pt on input line 75.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 68.
+(Font)              scaled to size 4.805pt on input line 75.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 72.
+(Font)              scaled to size 11.53198pt on input line 78.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 72.
+(Font)              scaled to size 11.53198pt on input line 78.
  [1
 
 ]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 110.
+
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 110.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 120.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 120.
+ [2]
 (./CapVolSensitivityCalculation.aux) ) 
 Here is how much of TeX's memory you used:
- 1836 strings out of 493807
- 21711 string characters out of 6151951
- 79542 words of memory out of 5000000
- 5306 multiletter control sequences out of 15000+600000
- 17413 words of font info for 79 fonts, out of 8000000 for 9000
+ 1858 strings out of 493807
+ 22043 string characters out of 6151951
+ 81542 words of memory out of 5000000
+ 5324 multiletter control sequences out of 15000+600000
+ 17862 words of font info for 82 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 27i,5n,26p,524b,243s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,6n,26p,524b,270s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on CapVolSensitivityCalculation.dvi (1 page, 3808 bytes).
+Output written on CapVolSensitivityCalculation.dvi (2 pages, 5972 bytes).

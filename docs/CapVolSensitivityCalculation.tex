@@ -57,7 +57,7 @@ The first step is to fill in the missing gaps. That is, since you are bootstrapp
 6m: 16\%, 1Y: 16\%, 18m: 16.5\%, 2Y: 17\%, 30m: 18\%, etc
 Assumptions in this first step are: flat maturity vol curve out to 1Y and linear interp between points (you are free to change these assumptions).This first entry in the forward volatility matrix (6m) is given from the maturity vol matrix (your inputs) i.e. 16\%.
 \fi
-最初のステップはギャップを埋めること。半年ベースでブートストラップするので、以下のようにmaturity volを組み立てなければならない。
+最初のステップは欠けているギャップを埋めること。半年ベースでブートストラップするので、以下のようにmaturity volを組み立てなければならない。
 6m: 16\%, 1Y: 16\%, 18m: 16.5\%, 2Y: 17\%, 30m: 18\%, etc
 この最初のステップで仮定しているのは、1Y以内はflatなmaturity vol カーブで、それ以降はグリッド間の線形補間である（これらの仮定は自由に変えれば良い）。この最初の入り口は、フォワードボラティリティ行列（6M）をmaturity vol matrixから得られる。
 
@@ -65,16 +65,60 @@ Assumptions in this first step are: flat maturity vol curve out to 1Y and linear
 \if0
 The next step is to calculate the 6x12 fwd vol. This is done by calculating the 6m and 12m maturity cap prices from the maturity vols and as you say, take 6m from the 12m price, which gives you the premium for this caplet. From this you can invert the Black formula and back out the fwd vol. You can do this all the way out to as many maturity vol inputs as you have, bearing in mind that for a final 10 year (120 month) maturity vol the last forward vol entry will be the 114x120 month point.
 \fi
-次に6$\times$12のフォワードボラティリティfwdVolを計算する。6M満期と12M満期のCap価格をその満期のボラティリティから計算して、あなたのいうように12Mの価格から6Mの価格を得る。12Mの価格はあなたにこのcapletについてのプレミアムを与える。これからBlack式を使ってフォワードボラティリティに戻す。
 
+
+\if0
+- calculate the price of an ATM cap
+- calculate the price of an ATM cap with maturity date one period later
+- calculate implied volatility of a caplet with the price equal to the difference in cap prices and strike equal to the forward rate?
+\fi
+次に6$\times$12のフォワードボラティリティfwdVolを計算する。6M満期と12M満期のCap価格をその満期のボラティリティから計算して、12Mの価格から6Mの価格を得る。12Mの価格はあなたにこのcapletについてのプレミアムを与える。これからBlack式を使ってフォワードボラティリティに戻す。
 
 \section{詳細式}
-\subsection{}
+\subsection{caplet vol curveの構築}
+\if0
 求めたいGrid: $t$、
 \[
 vol_t = (vol_{t-1} + vol_{t+1}) * 0.5
 \]
 
+\fi
+  
+  
+  
+
+\subsection{クオートされているcap volを分解}
 
 
+flat volとする。
+e.g.
+Yen: 
+2Y→6M, 1Y, 18M
+
+\begin{equation}
+ C = P(0, t_{k+1})\delta_{tenor}P(F_k\Phi(d_1) - K\Phi(d_2) )
+\end{equation}
+\begin{equation}
+d_1 = \frac{\log(\frac{F_k}{K}) + \frac{\sigma_kt_k}{2}}{\sigma_k\sqrt{t_k}}
+\end{equation}
+\begin{equation}
+d_2 = \frac{\log(\frac{F_k}{K}) - \frac{\sigma_kt_k}{2}}{\sigma_k\sqrt{t_k}} = d_1 - \sigma_k \sqrt{t_k}
+\end{equation}
+
+
+\begin{itemize}
+\item $P$: notional
+\item $F_k$: forward rate from $k$ to $k+1$ at 0 
+\item $P(0, t_{k+1})$: $\exp(-t_{k+1} \times r_{t_{k+1}})$
+\item $r_{t_{k+1}}$: interest rate for $t_{k+1}$
+\item $\sigma_k$: the volatility of the underlying forward rate at $k$
+\item $t_{k}$: the time grid
+\end{itemize}
+
+
+\begin{thebibliography}{10}
+\bibitem{a} \url{http://www.wilmott.com/messageview.cfm?catid=8&threadid=20290}
+\bibitem{b} \url{http://www.cmat.edu.uy/~mordecki/hk/lecture24.pdf}
+\bibitem{c} \url{http://www.opengamma.com/sites/default/files/caplet-stripping-opengamma.pdf}
+\end{thebibliography}
 \end{document}
