@@ -1,0 +1,80 @@
+\documentclass[platex]{jsarticle}
+
+\usepackage{ascmac}
+\usepackage{amsmath,amssymb,amsthm,enumerate}
+\usepackage{url}
+\usepackage{color}
+
+\newtheorem{theo}{Theorem}[section]
+\newtheorem{defi}{Definition}[section]
+\newtheorem{lemm}{Lemma}[section] 
+%\newtheorem{pro}{Proof}[section] 
+\newtheorem{Assumption}{Assumption}[section] 
+
+%(1) -> (8.1) 
+\numberwithin{equation}{section}
+
+
+\title{Calculate Sensitivities of Cap Volatility}
+\author{}
+\date{2015年2月9日}
+
+
+\begin{document}
+\maketitle
+\if0
+\begin{itemize}
+\item 2/2(火): 式書き上げる（大まかで良い）(2H)、XVA12.3まで訳完了、過去問（外為貿易1年分）
+\item 2/3(水): 式書き上げる（大まかで良い）,実装（Dual）（コンパイル通るように）(2H)XVA12.4まで訳完了、過去問(税金1年分)
+\item 2/4(木): 全体の目的を明確にして、それを実現するDualの設計をやる(2H)XVA12.5まで訳完了。過去問(財務1年分)
+\item 2/5(金): 実装（BlackTraits）(1H)、印刷して赤入れ（不明点1つ深掘り）、過去問(法務1年分)
+\item 2/6(土): 試験勉強(10H)印刷して赤入れ（不明点1つ深掘り）
+\item 2/7(日): 試験勉強(10H)印刷して赤入れ（不明点1つ深掘り）＿＿2年分の過去問を問いて、教科書を一通り眺めて理解出来てる状態に。
+\item 2/8(月): 2H印刷して赤入れ（不明点1つ深掘り）
+\item 2/9(火): ものづくり：式を明確化、Dual等の設計がそれに向けて合った状態になっている。xVA：ブラッシュアップが3回施され、どこ聞かれても大丈夫な状態に。
+\item 2/10(水): 
+\item 2/11(木): 10H
+\item 2/12(金): テスト本番
+\end{itemize}
+\fi
+
+\section{流れ}
+\begin{enumerate}
+\item 市場にはCapのVolatilityがクオートされている。
+\item Cap PVへ変換。
+\item 線形補間で間を埋める。
+\item Bootstrap的に前から順番にcapletの価値を求める。
+\end{enumerate}
+\if0
+To bootstrap forward cap vols you need to start with either the maturity vols or the cap prices themselves (from which you can back out the maturity vols). The bootstrapping technique will be currency dependent, e.g. GBP is 3 mos, EUR is 6 mos. Assume you want to bootstrap a EUR forward vol curve from the maturity curve. Your maturity vol inputs will be of the form (from broker screens):
+1Y: 16\%, 2Y: 17\%, 3Y: 19\%, 4Y: 18\%, 5Y: 16\%, 7Y: 15\%, 10Y: 14\%
+\fi
+forward cap volをbootstrapするために、maturity volかcapのプライス自体（ここからmaturity volへ戻す）からスタートする。bootstrap techniqueは通貨に依存する。例えばGBPは3M、EURは6Mロール。EURフォワードボラティリティカーブをmaturityカーブからブートストラップしたいとする。maturity volの入力を以下とする。
+1Y: 16\%, 2Y: 17\%, 3Y: 19\%, 4Y: 18\%, 5Y: 16\%, 7Y: 15\%, 10Y: 14\%
+
+\if0
+The first step is to fill in the missing gaps. That is, since you are bootstrapping on a semi annual basis you have to construct maturity vols as below:
+6m: 16\%, 1Y: 16\%, 18m: 16.5\%, 2Y: 17\%, 30m: 18\%, etc
+Assumptions in this first step are: flat maturity vol curve out to 1Y and linear interp between points (you are free to change these assumptions).This first entry in the forward volatility matrix (6m) is given from the maturity vol matrix (your inputs) i.e. 16\%.
+\fi
+最初のステップはギャップを埋めること。半年ベースでブートストラップするので、以下のようにmaturity volを組み立てなければならない。
+6m: 16\%, 1Y: 16\%, 18m: 16.5\%, 2Y: 17\%, 30m: 18\%, etc
+この最初のステップで仮定しているのは、1Y以内はflatなmaturity vol カーブで、それ以降はグリッド間の線形補間である（これらの仮定は自由に変えれば良い）。この最初の入り口は、フォワードボラティリティ行列（6M）をmaturity vol matrixから得られる。
+
+
+\if0
+The next step is to calculate the 6x12 fwd vol. This is done by calculating the 6m and 12m maturity cap prices from the maturity vols and as you say, take 6m from the 12m price, which gives you the premium for this caplet. From this you can invert the Black formula and back out the fwd vol. You can do this all the way out to as many maturity vol inputs as you have, bearing in mind that for a final 10 year (120 month) maturity vol the last forward vol entry will be the 114x120 month point.
+\fi
+次に6$\times$12のフォワードボラティリティfwdVolを計算する。6M満期と12M満期のCap価格をその満期のボラティリティから計算して、あなたのいうように12Mの価格から6Mの価格を得る。12Mの価格はあなたにこのcapletについてのプレミアムを与える。これからBlack式を使ってフォワードボラティリティに戻す。
+
+
+\section{詳細式}
+\subsection{}
+求めたいGrid: $t$、
+\[
+vol_t = (vol_{t-1} + vol_{t+1}) * 0.5
+\]
+
+
+
+\end{document}
