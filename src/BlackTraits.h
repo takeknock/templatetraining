@@ -9,6 +9,8 @@ namespace cp {
         typedef ForwardBlackTraits<K, T, V, F> FwdBl;
         //typedef FuncBinaryTraits<D, typename FwdBl::type, scalar_mult> Disc;
         //typedef typename Disc::type result_type;
+        
+        // not appropriate
         typedef typename FwdBl::result_type result_type;
     
         static result_type apply(const K& k, const T& t, const V& v, const F& f, 

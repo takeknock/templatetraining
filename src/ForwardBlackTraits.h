@@ -7,17 +7,19 @@
 namespace cp {
     template <typename K, typename T, typename V, typename F>
     struct ForwardBlackTraits {
-        //typedef AoNTraits<F, K, V, T> AoN;
-        //typedef CoNTraits<F, K, V, T> CoN;
+        typedef AoNTraits<K, T, V, F> AoN;
+        typedef CoNTraits<K, T, V, F> CoN;
         //typedef FuncBinaryTraits<typename AoN::type, typename CoN::type, 
         //    scalar_minus> Minus;
         //typedef typename Minus::type type;
+
+        // not appropriate
         typedef double result_type;
 
         static result_type apply(const K& k, const T& t, const V& v, const F& f)
         {
             //return Minus::apply(AoN::apply(f, k, v, t), CoN::apply(f, k, v, t));
-            return f * k; 
+            return AoN::apply(k, t, v, f) - CoN::apply(k, t, v, f); 
         }
     };
 } // namespace strcp

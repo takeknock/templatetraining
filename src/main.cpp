@@ -1,4 +1,4 @@
-#include <iostream>
+include <iostream>
 #include "Dual.h"
 #include "BlackTraits.h"
 
@@ -21,6 +21,9 @@ int main()
     const double maturity = 10.0;
     const double volatility = 0.2;
     const double forwardRate = 0.1;
+    // day count fraction ??
+    // discount ??
+    // check equation
     const double dayCountFraction = 20 / 360;
 
     cp::black<double, double, double, double, double> f;
