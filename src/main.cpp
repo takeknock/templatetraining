@@ -1,16 +1,19 @@
 #include <iostream>
 #include "Dual.h"
+#include "BlackTraits.h"
 
-template <typename K, typename T, typename V, typename F>
-class black {
-public:
-    double operator()(const K& strike, const T& maturity, 
-        const V& volatility, const F& forwardRate)
-    {
-        return strike;
-    }
-
-};
+namespace cp {
+    template <typename K, typename T, typename V, typename F, typename D>
+    class black {
+    public:
+        double operator()(const K& strike, const T& maturity, 
+            const V& volatility, const F& forwardRate, const D& dayCountFraction)
+        {
+            return BlackTraits<K, T, V, F, D>::apply(
+                strike, maturity, volatility, forwardRate, dayCountFraction);
+        }
+    };
+} // namespace cp
 
 int main()
 {
@@ -18,10 +21,14 @@ int main()
     const double maturity = 10.0;
     const double volatility = 0.2;
     const double forwardRate = 0.1;
+    const double dayCountFraction = 20 / 360;
 
-    //black<double, double, double, double> b;
-    //double price = b(strike, maturity, volatility, forwardRate);
-    //std::cout << price << std::endl;
+    cp::black<double, double, double, double, double> f;
+    double price = f(strike, maturity, volatility, forwardRate, dayCountFraction);
+    std::cout << price << std::endl;
+
+
+    // TODO: be able to input other type as template arguments 
 
     cp::Dual<double, double> a(10.0, 5.0);
     cp::Dual<double, double> b(20.0, 2.0);
@@ -35,7 +42,6 @@ int main()
     std::cout << mi._derivative << std::endl;
     std::cout << mu._derivative << std::endl;
     std::cout << div._derivative << std::endl;
-
 
     return 0;
 }
