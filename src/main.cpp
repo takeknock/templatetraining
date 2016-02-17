@@ -1,19 +1,6 @@
-include <iostream>
+#include <iostream>
 #include "Dual.h"
-#include "BlackTraits.h"
 
-namespace cp {
-    template <typename K, typename T, typename V, typename F, typename D>
-    class black {
-    public:
-        double operator()(const K& strike, const T& maturity, 
-            const V& volatility, const F& forwardRate, const D& dayCountFraction)
-        {
-            return BlackTraits<K, T, V, F, D>::apply(
-                strike, maturity, volatility, forwardRate, dayCountFraction);
-        }
-    };
-} // namespace cp
 
 int main()
 {
@@ -26,9 +13,9 @@ int main()
     // check equation
     const double dayCountFraction = 20 / 360;
 
-    cp::black<double, double, double, double, double> f;
-    double price = f(strike, maturity, volatility, forwardRate, dayCountFraction);
-    std::cout << price << std::endl;
+    //cp::black<double, double, double, double, double> f;
+    //double price = f(strike, maturity, volatility, forwardRate, dayCountFraction);
+    //std::cout << price << std::endl;
 
 
     // TODO: be able to input other type as template arguments 
@@ -45,6 +32,8 @@ int main()
     std::cout << mi._derivative << std::endl;
     std::cout << mu._derivative << std::endl;
     std::cout << div._derivative << std::endl;
+
+
 
     return 0;
 }
