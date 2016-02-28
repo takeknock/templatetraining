@@ -5,14 +5,12 @@
 //#include "dual_expression.h"
 
 namespace cp {
-//最終的に偏微分したいが、その際、derivativeがvectorの形となるが、その初期値はどのように与えるのか
-//
-    template <typename V, typename D>
+    namespace ublas = boost::numeric::ublas;
+    template <typename V>
     class Dual {
     public:
-        //namespace ublas = boost::numeric::ublas;
         typedef V value_type;
-        typedef typename boost::numeric::ublas::vector<D> vector_type;
+        //typedef typename ublas::vector<V> vector_type;
     public:
         // first, 1 dim.
         Dual(value_type value, value_type derivative)
@@ -20,39 +18,76 @@ namespace cp {
         {
         }
 
+        Dual(value_type value)
+        : _value(value), _derivative(1.0)
+        {
+        }
+
     public:
         value_type _value;
+        //vector_type _derivative;
         value_type _derivative;
     };
 
     // operators as free functions
-    Dual<double, double> operator +(
-        const Dual<double, double>& x, const Dual<double, double>& y)
+    //template <typename E1, typename E2>
+    Dual<double> operator +(
+        const Dual<double>& x, const Dual<double>& y)
     {
-        return Dual<double, double>(x._value + y._value, x._derivative + y._derivative);
+        return Dual<double>(
+            x._value + y._value, x._derivative + y._derivative);
     }
 
-    Dual<double, double> operator -(
-        const Dual<double, double>& x, const Dual<double, double>& y)
+    Dual<double> operator -(
+        const Dual<double>& x, const Dual<double>& y)
     {
-        return Dual<double, double>(x._value - y._value, x._derivative - y._derivative);
+        return Dual<double>(
+            x._value - y._value, x._derivative - y._derivative);
     }
 
-    Dual<double, double> operator *(
-        const Dual<double, double>& x, const Dual<double, double>& y)
+    Dual<double> operator *(
+        const Dual<double>& x, const Dual<double>& y)
     {
-        return Dual<double, double>(x._value * y._value, 
+        return Dual<double>(x._value * y._value, 
             x._value * y._derivative + x._derivative * y._value);
     }
 
-    Dual<double, double> operator /(
-        const Dual<double, double>& x, const Dual<double, double>& y)
+    Dual<double> operator /(
+        const Dual<double>& x, const Dual<double>& y)
     {
-        return Dual<double, double>(x._value / y._value, 
+        return Dual<double>(x._value / y._value, 
             (y._value * x._derivative - x._value * y._derivative) 
                 / (y._value * y._value));
     }
 
+    
+    Dual<double> operator +(
+        const Dual<double>& x, double y)
+    {
+        return Dual<double>(
+            x._value + y, x._derivative);
+    }
+
+    Dual<double> operator -(
+        const Dual<double>& x, double y)
+    {
+        return Dual<double>(
+            x._value - y, x._derivative);
+    }
+
+    Dual<double> operator *(
+        const Dual<double>& x, double y)
+    {
+        return Dual<double>(x._value * y, x._derivative * y);
+    }
+
+    Dual<double> operator /(
+        const Dual<double>& x, double y)
+    {
+        return Dual<double>(x._value / y, 
+            x._derivative / y);
+    }
+    
 
 } // namespace cp
 
