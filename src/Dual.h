@@ -62,32 +62,60 @@ namespace cp {
 
     
     Dual<double> operator +(
-        const Dual<double>& x, double y)
+        const Dual<double>& x, const double y)
     {
         return Dual<double>(
             x._value + y, x._derivative);
     }
 
     Dual<double> operator -(
-        const Dual<double>& x, double y)
+        const Dual<double>& x, const double y)
     {
         return Dual<double>(
             x._value - y, x._derivative);
     }
 
     Dual<double> operator *(
-        const Dual<double>& x, double y)
+        const Dual<double>& x, const double y)
     {
         return Dual<double>(x._value * y, x._derivative * y);
     }
 
     Dual<double> operator /(
-        const Dual<double>& x, double y)
+        const Dual<double>& x, const double y)
     {
         return Dual<double>(x._value / y, 
             x._derivative / y);
     }
     
+
+    Dual<double> operator +(
+        const double x, const Dual<double>& y)
+    {
+        return Dual<double>(
+            x + y._value, y._derivative);
+    }
+
+    Dual<double> operator -(
+        const double x, const Dual<double>& y)
+    {
+        return Dual<double>(
+            x - y._value, - y._derivative);
+    }
+
+    Dual<double> operator *(
+        const double x, const Dual<double>& y)
+    {
+        return Dual<double>(x * y._value, 
+            x * y._derivative);
+    }
+
+    Dual<double> operator /(
+        const double x, const Dual<double>& y)
+    {
+        return Dual<double>(x / y._value, 
+            (- x * y._derivative) / (y._value * y._value));
+    }
 
 } // namespace cp
 

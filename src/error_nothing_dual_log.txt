@@ -1,0 +1,106 @@
+src/main.cpp:88:28: error: redefinition of 'forwardLibor' with a different type: 'const cp::Dual<double>' vs 'ublas::vector<cp::Dual<double> >'
+    const cp::Dual<double> forwardLibor(180.0 / 360.0 
+                           ^
+src/main.cpp:50:38: note: previous definition is here
+    ublas::vector<cp::Dual<double> > forwardLibor(9);
+                                     ^
+src/main.cpp:91:24: error: no matching function for call to 'log'
+    const double d1 = (std::log(forwardLibor / strike)
+                       ^~~~~~~~
+/usr/include/math.h:387:15: note: candidate function not viable: no known conversion from 'typename enable_if<is_convertible<double, typename vector<Dual<double>,
+      unbounded_array<Dual<double>, allocator<Dual<double> > > >::value_type>, typename vector_binary_scalar2_traits<vector<Dual<double>,
+      unbounded_array<Dual<double>, allocator<Dual<double> > > >, const double, scalar_divides<typename vector<Dual<double>, unbounded_array<Dual<double>,
+      allocator<Dual<double> > > >::value_type, double> >::result_type>::type' (aka
+      'boost::numeric::ublas::vector_binary_scalar2<boost::numeric::ublas::vector<cp::Dual<double>, boost::numeric::ublas::unbounded_array<cp::Dual<double>,
+      std::__1::allocator<cp::Dual<double> > > >, const double, boost::numeric::ublas::scalar_divides<cp::Dual<double>, double> >') to 'double' for 1st argument
+extern double log(double);
+              ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath:905:46: note: candidate function not viable: no known
+      conversion from 'typename enable_if<is_convertible<double, typename vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > >
+      >::value_type>, typename vector_binary_scalar2_traits<vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > > >, const double,
+      scalar_divides<typename vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > > >::value_type, double> >::result_type>::type' (aka
+      'boost::numeric::ublas::vector_binary_scalar2<boost::numeric::ublas::vector<cp::Dual<double>, boost::numeric::ublas::unbounded_array<cp::Dual<double>,
+      std::__1::allocator<cp::Dual<double> > > >, const double, boost::numeric::ublas::scalar_divides<cp::Dual<double>, double> >') to 'float' for 1st argument
+inline _LIBCPP_INLINE_VISIBILITY float       log(float __x) _NOEXCEPT       {return logf(__x);}
+                                             ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath:906:46: note: candidate function not viable: no known
+      conversion from 'typename enable_if<is_convertible<double, typename vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > >
+      >::value_type>, typename vector_binary_scalar2_traits<vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > > >, const double,
+      scalar_divides<typename vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > > >::value_type, double> >::result_type>::type' (aka
+      'boost::numeric::ublas::vector_binary_scalar2<boost::numeric::ublas::vector<cp::Dual<double>, boost::numeric::ublas::unbounded_array<cp::Dual<double>,
+      std::__1::allocator<cp::Dual<double> > > >, const double, boost::numeric::ublas::scalar_divides<cp::Dual<double>, double> >') to 'long double' for 1st
+      argument
+inline _LIBCPP_INLINE_VISIBILITY long double log(long double __x) _NOEXCEPT {return logl(__x);}
+                                             ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath:911:20: note: candidate template ignored: disabled by
+      'enable_if' [with _A1 = boost::numeric::ublas::vector_binary_scalar2<boost::numeric::ublas::vector<cp::Dual<double>,
+      boost::numeric::ublas::unbounded_array<cp::Dual<double>, std::__1::allocator<cp::Dual<double> > > >, const double,
+      boost::numeric::ublas::scalar_divides<cp::Dual<double>, double> >]
+typename enable_if<is_integral<_A1>::value, double>::type
+                   ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/complex:1107:1: note: candidate template ignored: could not
+      match 'complex' against 'vector_binary_scalar2'
+log(const complex<_Tp>& __x)
+^
+src/main.cpp:95:24: error: no matching function for call to 'log'
+    const double d2 = (std::log(forwardLibor / strike)
+                       ^~~~~~~~
+/usr/include/math.h:387:15: note: candidate function not viable: no known conversion from 'typename enable_if<is_convertible<double, typename vector<Dual<double>,
+      unbounded_array<Dual<double>, allocator<Dual<double> > > >::value_type>, typename vector_binary_scalar2_traits<vector<Dual<double>,
+      unbounded_array<Dual<double>, allocator<Dual<double> > > >, const double, scalar_divides<typename vector<Dual<double>, unbounded_array<Dual<double>,
+      allocator<Dual<double> > > >::value_type, double> >::result_type>::type' (aka
+      'boost::numeric::ublas::vector_binary_scalar2<boost::numeric::ublas::vector<cp::Dual<double>, boost::numeric::ublas::unbounded_array<cp::Dual<double>,
+      std::__1::allocator<cp::Dual<double> > > >, const double, boost::numeric::ublas::scalar_divides<cp::Dual<double>, double> >') to 'double' for 1st argument
+extern double log(double);
+              ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath:905:46: note: candidate function not viable: no known
+      conversion from 'typename enable_if<is_convertible<double, typename vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > >
+      >::value_type>, typename vector_binary_scalar2_traits<vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > > >, const double,
+      scalar_divides<typename vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > > >::value_type, double> >::result_type>::type' (aka
+      'boost::numeric::ublas::vector_binary_scalar2<boost::numeric::ublas::vector<cp::Dual<double>, boost::numeric::ublas::unbounded_array<cp::Dual<double>,
+      std::__1::allocator<cp::Dual<double> > > >, const double, boost::numeric::ublas::scalar_divides<cp::Dual<double>, double> >') to 'float' for 1st argument
+inline _LIBCPP_INLINE_VISIBILITY float       log(float __x) _NOEXCEPT       {return logf(__x);}
+                                             ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath:906:46: note: candidate function not viable: no known
+      conversion from 'typename enable_if<is_convertible<double, typename vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > >
+      >::value_type>, typename vector_binary_scalar2_traits<vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > > >, const double,
+      scalar_divides<typename vector<Dual<double>, unbounded_array<Dual<double>, allocator<Dual<double> > > >::value_type, double> >::result_type>::type' (aka
+      'boost::numeric::ublas::vector_binary_scalar2<boost::numeric::ublas::vector<cp::Dual<double>, boost::numeric::ublas::unbounded_array<cp::Dual<double>,
+      std::__1::allocator<cp::Dual<double> > > >, const double, boost::numeric::ublas::scalar_divides<cp::Dual<double>, double> >') to 'long double' for 1st
+      argument
+inline _LIBCPP_INLINE_VISIBILITY long double log(long double __x) _NOEXCEPT {return logl(__x);}
+                                             ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath:911:20: note: candidate template ignored: disabled by
+      'enable_if' [with _A1 = boost::numeric::ublas::vector_binary_scalar2<boost::numeric::ublas::vector<cp::Dual<double>,
+      boost::numeric::ublas::unbounded_array<cp::Dual<double>, std::__1::allocator<cp::Dual<double> > > >, const double,
+      boost::numeric::ublas::scalar_divides<cp::Dual<double>, double> >]
+typename enable_if<is_integral<_A1>::value, double>::type
+                   ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/complex:1107:1: note: candidate template ignored: could not
+      match 'complex' against 'vector_binary_scalar2'
+log(const complex<_Tp>& __x)
+^
+In file included from src/main.cpp:4:
+In file included from /usr/local/include/boost/numeric/ublas/vector.hpp:21:
+/usr/local/include/boost/numeric/ublas/storage.hpp:71:43: error: no matching constructor for initialization of 'value_type' (aka 'cp::Dual<double>')
+                      alloc_.construct(d, value_type());
+                                          ^
+/usr/local/include/boost/numeric/ublas/vector.hpp:86:10: note: in instantiation of member function 'boost::numeric::ublas::unbounded_array<cp::Dual<double>,
+      std::__1::allocator<cp::Dual<double> > >::unbounded_array' requested here
+                data_ (size) {
+                ^
+src/main.cpp:50:38: note: in instantiation of member function 'boost::numeric::ublas::vector<cp::Dual<double>,
+      boost::numeric::ublas::unbounded_array<cp::Dual<double>, std::__1::allocator<cp::Dual<double> > > >::vector' requested here
+    ublas::vector<cp::Dual<double> > forwardLibor(9);
+                                     ^
+src/Dual.h:21:9: note: candidate constructor not viable: requires single argument 'value', but no arguments were provided
+        Dual(value_type value)
+        ^
+src/Dual.h:10:11: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 0 were provided
+    class Dual {
+          ^
+src/Dual.h:16:9: note: candidate constructor not viable: requires 2 arguments, but 0 were provided
+        Dual(value_type value, value_type derivative)
+        ^
+4 errors generated.
+make: *** [a.out] Error 1

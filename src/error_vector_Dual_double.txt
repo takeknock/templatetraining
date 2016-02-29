@@ -1,0 +1,24 @@
+In file included from src/main.cpp:4:
+In file included from /usr/local/include/boost/numeric/ublas/vector.hpp:21:
+/usr/local/include/boost/numeric/ublas/storage.hpp:71:43: error: no matching constructor for initialization of 'value_type' (aka 'cp::Dual<double>')
+                      alloc_.construct(d, value_type());
+                                          ^
+/usr/local/include/boost/numeric/ublas/vector.hpp:86:10: note: in instantiation of member function 'boost::numeric::ublas::unbounded_array<cp::Dual<double>,
+      std::__1::allocator<cp::Dual<double> > >::unbounded_array' requested here
+                data_ (size) {
+                ^
+src/main.cpp:58:38: note: in instantiation of member function 'boost::numeric::ublas::vector<cp::Dual<double>,
+      boost::numeric::ublas::unbounded_array<cp::Dual<double>, std::__1::allocator<cp::Dual<double> > > >::vector' requested here
+    ublas::vector<cp::Dual<double> > forwardLibor(9);
+                                     ^
+src/Dual.h:21:9: note: candidate constructor not viable: requires single argument 'value', but no arguments were provided
+        Dual(value_type value)
+        ^
+src/Dual.h:10:11: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 0 were provided
+    class Dual {
+          ^
+src/Dual.h:16:9: note: candidate constructor not viable: requires 2 arguments, but 0 were provided
+        Dual(value_type value, value_type derivative)
+        ^
+1 error generated.
+make: *** [a.out] Error 1
