@@ -8,7 +8,7 @@ Wrong-way risk(WWR)：exposureとカウンターパーティーのcredit quality
 ### 17.2.1 Simple example
 credit spread × exposure
 
-![14.2](C:\Users\mmatt\Dropbox\btmu\followUp\xva\regime\14_2.jpg)        (14.2)
+![14.2](/Users/mmatthew_43/Code/templatetraining/templatetraining/uploadDocs/14_2.jpg)        (14.2)
 
 ↑の式では、各量が**独立**であることを仮定。将来的には、どのように信用リスク（デフォルトリスク）と市場リスク（exposure）を統合するかという難しい課題を考えなければならない。
 
@@ -33,13 +33,29 @@ Duffee(1998):
 銀行はここ数年、無担保の金利スワップの固定受けポジにて、これを経験している。そのポジションは、カウンターパーティーの財務状態のpotential declineを伴って、ITMへ移行する（例えば、sovereignや企業）。この影響はクレジットスプレッドと金利の強いつながりを通じて、実際にデフォルトが発生しなかったとしても、cross-gamma効果を生み出すWWRとして認識されている。
 
 ### 17.2.3 General and specigic WWR
+正確にxVAを価格付けしヘッジするには、WWRの勘案が必要。  
+主な特徴は表17.1参照。
 ### 17.2.4 WWR challenges
+WWRの定量化には、credit, collateral, funding, exposureの間の関係を何らかの形でモデル化し、含める必要がある。しかし、それには多くの問題がある。以下は、その一部。
+* Uninformative historical data
+* Misspecification of relation ship
+* Direction
+WWRはその性質から、極端で、しばしば特定のところにあらわれる。European sovereign debt crisisの例。
+
+
 ## 17.3 Quantification of wrong-way risk
 ### 17.3.1 Wrong-way risk and CVA
 
 
 
-![CVA = LGD \sum_{i=1}^{m}EE(t_i | t_i = \tau_c) \times PD(t_{i-1}, t_i)](C:\Users\mmatt\Dropbox\btmu\followUp\xva\regime\17_1.jpg)        (17.1)
+![CVA = LGD \sum_{i=1}^{m}EE(t_i | t_i = \tau_c) \times PD(t_{i-1}, t_i)](/Users/mmatthew_43/Code/templatetraining/templatetraining/uploadDocs/17_1.jpg)        (17.1)
+
+.  
+.  
+.
+.  
+
+
 
 
 ### 17.3.2 Simple example
@@ -68,9 +84,6 @@ WWR, RWRを容易に特定できる、対称なexposure profileを持つ。
 #### デメリット
 しかし、単純なhazard rateアプローチでは、exposureとdefaultのとても弱い依存関係しか生み出せない。（先の例では-90%程度の相関。）
 
-Definition(EE):
-あとで書く
-
 
 ### 17.4.2 Structural approaches
 #### どんなアプローチ？
@@ -95,7 +108,7 @@ Definition(EE):
 #### デメリット
 経済的に合理的であろうがなかろうが、100%の相関をとれないので、ケースが限られる。
 
-### 17.4.4 Jump approaches
+### 17.4.4 Jump approaches（devaluation approach)
 #### どんなアプローチ？
 よりspecific WWRに関連したアプローチ。（例えば、前述のFXのケース）
 
@@ -115,11 +128,6 @@ FXレートの場合。
 
 ヨーロッパの国家危機の間に似た効果が2011年後半に見られた。例えば、implied RVが国によって違っていた。そういうわけで、CDS市場は、WWRの通貨における効果が観察され、潜在的にヘッジされることを可能にする。
 
-#### メリット
-
-
-#### デメリット
-
 
 ### 17.4.5 Credit derivatives
 
@@ -136,12 +144,31 @@ appendix17Cで、単純なモデルを用いたカウンターパーティーリ
 この難しさを見るため、general WWRへのアプローチをまず考える。
 図17.13: zero-threshold, two-way CSA.
 担保をいれてるほうが傾きがなだらか（相関が大きいほど、多くの担保をいれているため）。
-#### どんなアプローチ？
-#### メリット
-#### デメリット
+
+より連続的なアプローチであるhazard rate modelやstructured modelでは担保はWWRを低減する効果がある一方で、devaluation approachではほぼ効果なし。
+真実はその間のどこかにあり、カウンターパーティーの種類に依存する。Pykhtin & Sokol(2013)はWWR状況下の担保のbenefitを定量化するには、ジャンプとMPRでの高いボラティリティの期間を考慮しなければならない、と述べている。また彼らは銀行のようなよりシステマティックな企業だとよりWWRは高くなるとも述べている。
+全体を通して、担保の利益に対して、WWRはマイナスな影響を持っている。
+
+17.4.4章のFXの例を考えてみる。効果は明らかにも関わらず、結果は、図17.14のようになる。
+
 
 
 ### 17.4.7 Central clearing and wrong-way risk
+担保をprotectionとして当てにしている場合、CCPsはWWRに陥りがちである。（特にCDSのクリアリングを行っている場合）
+
+CCPは、そのクリアリング先がデフォルトした場合に、参加者が拠出している資金で、デフォルトによって発生する損失をカバーする（"defaulter pays" approach）のが目的である。その集めた資金で損失を十分カバーできないリスクが存在する。
+
+CCPはcredit qualityとexposureを切り離す傾向がある。CCPへの参加者はある程度のcredit qualityを持つが、IMと、ポートフォリオの市場リスクによって発生するデフォルトファンドへのチャージがなされる。このことを通して、CCPは暗にWWRを無視してしまう危険性がある。
+
+CDSのような大きなWWRをはらむ取引については、CCPはIMやdefault fundを定義する中でWWR定量化するという問題を抱えている。もともとWWRを定量化するのは難しい。さらには、credit qualityが高いほど、また規模が大きいほどWWRが高くなるため、よりよいcredit qualityの企業からより多くのIMとdefault fundへのチャージを取る必要が出てくる。
+
+上記に関係して、CCP waterfallはCDOのような振る舞いをもつ。
+図17.15参照。
+
+CCPのdefault fundや配分の方法からのリスクについて心配されることは、Second loss部分が、CCPの参加者のsystemic risk exposureへ集中していることである。
+
+CCPは受け入れる担保によってもWWRへ直面している。CCPには広い適格な証券をIMとして受け入れる圧力がかかっている。証券の種類を広く受け入れると、CCPは参加者の逆選択にさらされる。しかし、全く異なる２者間の取引であれば、流動性等別の問題は生まれるが、CCPはより大きなhaircutを適用するといったように規則を変更することで対応できる。
+
 #### どんなアプローチ？
 #### メリット
 #### デメリット
@@ -150,3 +177,6 @@ appendix17Cで、単純なモデルを用いたカウンターパーティーリ
 ## 17.5 Summary
 この章では、カウンターパーティーリスクにおけるWWRの影響について議論した。
 WWRはささいなものだが、カウンターパーティーリスクとCVAを劇的に増加させうる潜在的に強い影響を持っている。general WWRとspecific WWRで特徴づけ、モデルに関する共通のアプローチを紹介し、固有の弱点にも焦点を当てた。担保のWWRの影響と、CCPのWWRの影響についても考えた。
+
+Appendix chapter 17
+http://www.cvacentral.com/wp-content/uploads/2014/05/Chapter-17-Appendices-3rd-Edition.pdf
