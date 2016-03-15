@@ -6,6 +6,9 @@ Wrong-way risk(WWR)：exposureとカウンターパーティーのcredit quality
 
 ## 17.2 Overview of wrong-way risk
 ### 17.2.1 Simple example
+
+WWRは、著しく低く見積もられている。
+
 credit spread × exposure
 
 ![14.2](/Users/mmatthew_43/Code/templatetraining/templatetraining/uploadDocs/14_2.jpg)        (14.2)
@@ -17,12 +20,14 @@ credit spread × exposure
 
 最も単純な例は、モーゲージの提供者（景気の後退期に保有不動産の資産価格が下がり、持ち家所有者によって高いデフォルト率に直面する）。
 
-デリバティブにおいては、異なるアセットをまたいだWWRを明らかに含む古典的な例。
+デリバティブにおいては、異なるアセットをまたいだWWRを明らかに含む古典的な例として、以下がある。
 
-* Put Option.
-* FX forward or cross-currency products.
-* Interest rate products.
-* Commodity swaps.
+* Put Option.:カウンターパーティーの株式等と相関のある原資産のプット・オプションを買うこと。
+* FX forward or cross-currency products.:通貨が弱くなるのと同時にカウンターパーティーのcredit qualityも悪化。国家と取引して、その支払にその国の通貨を用いるような取引。
+* Interest rate products.  
+.  
+* Commodity swaps.  
+.  
 * Credit default swaps.
 
 #### empirical evidence
@@ -37,10 +42,10 @@ Duffee(1998):
 主な特徴は表17.1参照。
 ### 17.2.4 WWR challenges
 WWRの定量化には、credit, collateral, funding, exposureの間の関係を何らかの形でモデル化し、含める必要がある。しかし、それには多くの問題がある。以下は、その一部。
-* Uninformative historical data
-* Misspecification of relation ship
-* Direction
-WWRはその性質から、極端で、しばしば特定のところにあらわれる。European sovereign debt crisisの例。
+* Uninformative historical data: 歴史的に起こっていなくとも発生しうる
+* Misspecification of relationship: 相関関係と因果関係を誤認識する可能性
+* Direction: 動きの関連性は変わり得る
+WWRはその性質から極端であり、しばしば特定のところにあらわれる。European sovereign debt crisisの例。
 
 
 ## 17.3 Quantification of wrong-way risk
@@ -55,13 +60,37 @@ WWRはその性質から、極端で、しばしば特定のところにあら�
 .
 .  
 
-
+一方で、PDとEEの間の関係を正確にモデル化しようとするのは、とてもむずかしい。
 
 
 ### 17.3.2 Simple example
+単一の相関パラメータで、exposureとカウンターパーティーのデフォルトを関係づける。
+図17.1：
+* 相関50%: 条件付きEEは倍
+* 相関-50%: 条件付きEEは半分
+
+図17.2：
+Credit qualityよくなるほど、条件付きEE大きくなる
+
 ### 17.3.3 Wrong-way collateral
+例1:  
+高いcredit qualityの国債を担保にしたのIRS（払い）場合：  
+金利↑→Pv(IRS)↑、担保価格↓（WWR）  
+
+高いcredit qualityの国債を担保にしたのIRS（受け）場合：  
+金利↑→Pv(IRS)↓、担保価格↓（RWR）
+
+例2:  
+原資産の通貨でのキャッシュを担保にした通貨スワップ。
+結果は、図17.3
+.  
+.  
+.  
+.  
+
 ## 17.4 Wrong-way risk modelling
-各アプローチのメリットデメリットについて。
+各アプローチ（17.4.1-17.4.3）と、考慮すべき話。
+
 ### 17.4.1 Hazard rate approaches
 #### どんなアプローチ？
 credit spreadを確率過程として、モデリングに必要な原資産のモデルと相関を持たせるもの。
@@ -169,9 +198,6 @@ CCPのdefault fundや配分の方法からのリスクについて心配され�
 
 CCPは受け入れる担保によってもWWRへ直面している。CCPには広い適格な証券をIMとして受け入れる圧力がかかっている。証券の種類を広く受け入れると、CCPは参加者の逆選択にさらされる。しかし、全く異なる２者間の取引であれば、流動性等別の問題は生まれるが、CCPはより大きなhaircutを適用するといったように規則を変更することで対応できる。
 
-#### どんなアプローチ？
-#### メリット
-#### デメリット
 
 
 ## 17.5 Summary
